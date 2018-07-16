@@ -14,24 +14,24 @@ public class CompCalcAlgorithm {
      * CompCalculations - HashMap.
      * ModList -  Map<String, Mod[]>.
      * 
-     * Create - 
-     * HashMap of values to calc.
+     *   Create - 
+     *   HashMap of values to calc.
      * 
-     * For each mod in implicit and explicit mods.
-     *      Check what comp mods are associated with that mod.
-     *      For each associated comp mod
-     *          if those calcs are not in the HashMap.
-     *              Use all mods to calc the full composite mod, add to HashMap. calcIndividualCompMod().
-     * end for
+     *  For each mod in implicit and explicit mods.
+     *       Check what comp mods are associated with that mod.
+     *       For each associated comp mod
+     *           if those compCalcs are not in the HashMap.
+     *               Use all mods to calc the full composite mod, add to HashMap. calcIndividualCompMod().
+     *  end for
      * 
      */
     
-    Map<String, CompositeCalculation> calcs;
+    Map<String, CompositeCalculation> compCalcs;
     Map<String, ModUses> modList;
     
     
     public CompCalcAlgorithm(Map<String, CompositeCalculation> calcs,  Map<String, ModUses> modList){
-        this.calcs = calcs;
+        this.compCalcs = calcs;
         this.modList = modList;
     }
 
@@ -44,6 +44,19 @@ public class CompCalcAlgorithm {
                 uses = getUsesFromModList(itemMod.getKey());
             }
             
+            /**
+             * How it works:
+             * 
+             * For each mod in implicit and explicit mods.
+             *      if mod is in mod list.
+             *          get uses, which are composite calculations names, from mod list
+             *          
+             * end for
+             * Create list of compositeCalculations objects.
+             * for each composite calc in compositeCalculations list
+             *      calcIndividualCompMod
+             */
+            
             //Get uses from mod list.
             //For each use, get full CompositeCalculation from compCalcs.
             //calc tuple (using calcIndividualCompMod()) and add to calcedMods.
@@ -52,10 +65,6 @@ public class CompCalcAlgorithm {
     
     //Take list of item mods and calculate the specified composite value.
     public Tuple calcIndividualCompMod(ArrayList<Tuple> itemMods, CompositeCalculation calc){
-        float total = 0;
-        
-        //For each mod in calc
-        
         /**
          * What does this method need to do?
          * 
@@ -72,26 +81,16 @@ public class CompCalcAlgorithm {
          * for each mod in calc, if mod is in itemmods
          *      add value*multiplier to total.
          **/
+        float total = 0;
         
-        
-        for (Mod s: calc.getMods()){
-            //if Array of itemMods contains s.name
-            if (isStringInModArrayList(itemMods, s.getName())){
-                ValueMultiplierPair v = getFromArrayListUsingString(itemMods, calc.getMods(), s.getName());
+        for (Mod mod: calc.getMods()){
+            //if Array of itemMods contains a mod in calc.mod[]
+            if (isStringInModArrayList(itemMods, mod.getName())){
+                //Get value and multiplier from the item mod and calc, and add to total.
+                ValueMultiplierPair v = getFromArrayListUsingString(itemMods, calc.getMods(), mod.getName());
                 total += (v.getValue()*v.getMultiplier());
             }
         }
-        
-//        for (Mod u: calc.getValue().uses){
-//            if (isStringInModArrayList(itemMods, u.getName())){//If mod is in itemMods
-//                toUse.add(getFromArrayListUsingString(itemMods, calc, u.getName()));
-//            }
-//        }
-        
-        //use multiplier to add to total.
-//        for (ValueMultiplierPair t: toUse){
-//            total += t.getValue() * t.getMultiplier();
-//        }
         //return final value in tuple form.
         return new Tuple(calc.getName(), total);
     }
@@ -123,7 +122,7 @@ public class CompCalcAlgorithm {
     }
     
     private ArrayList<String> getUsesFromModList(String itemMod){
-        //Search calcs for itemMod, get uses array from item mod.
+        //Search compCalcs for itemMod, get uses array from item mod.
         return null;
     }
 }

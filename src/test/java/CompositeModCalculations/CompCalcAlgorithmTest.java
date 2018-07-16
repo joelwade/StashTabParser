@@ -7,7 +7,9 @@ package CompositeModCalculations;
 
 import com.mycompany.poe.api.parser.ApiObjects.Tuple;
 import java.io.IOException;
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -63,16 +65,13 @@ public class CompCalcAlgorithmTest {
             new Mod("+## to Strength and Dexterity", (float) .5),
             new Mod("+## to Strength and Intelligence", (float) .5)};
         
-        Map.Entry<String, ModUses> mapEntry = null;
         Map<String, ModUses> mods2 = ModListCreator.getModMap("src\\main\\java\\CompositeModCalculations\\CompositeCalculations.json");
-        for (Map.Entry<String, ModUses> entry : mods2.entrySet()){
-            if (entry.getKey().equals("(Total) +## to maximum Life")){
-                mapEntry = entry;
-                break;
-            }
-        }
         
-        CompCalcAlgorithm instance = new CompCalcAlgorithm(mapEntry, null);
+        CompositeCalculation compCalc = new CompositeCalculation("(Total) +## to maximum Life", mods);
+        Map<String, CompositeCalculation> compCalcMap = new HashMap<>();
+        
+        
+        CompCalcAlgorithm instance = new CompCalcAlgorithm(compCalcMap, mods2);
         CompositeCalculation compp = new CompositeCalculation("(Total) +## to maximum Life", mods);
         
         float expResult = (float) 60.0;
