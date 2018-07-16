@@ -1,0 +1,75 @@
+{
+  "+## to all Attributes": {
+    "name": "+## to all Attributes",
+    "uses": [
+      "(Total) +## to maximum Life",
+      "(Total) +## to Strength"
+    ]
+  },
+  "Adds ## to ## Lightning Damage to Attacks": {
+    "name": "Adds ## to ## Lightning Damage to Attacks",
+    "uses": [
+      "Adds ## to ## Elemental Damage to Attacks",
+      "Adds ## to ## Elemental Damage to Bow Attacks"
+    ]
+  },
+  "+## to Strength": {
+    "name": "+## to Strength",
+    "uses": [
+      "(Total) +## to maximum Life",
+      "(Total) +## to Strength"
+    ]
+  },
+  "Adds ## to ## Cold Damage to Attacks": {
+    "name": "Adds ## to ## Cold Damage to Attacks",
+    "uses": [
+      "Adds ## to ## Elemental Damage to Attacks",
+      "Adds ## to ## Elemental Damage to Bow Attacks"
+    ]
+  },
+  "+## to Strength and Dexterity": {
+    "name": "+## to Strength and Dexterity",
+    "uses": [
+      "(Total) +## to maximum Life",
+      "(Total) +## to Strength"
+    ]
+  },
+  "Adds ## to ## Fire Damage to Attacks": {
+    "name": "Adds ## to ## Fire Damage to Attacks",
+    "uses": [
+      "Adds ## to ## Elemental Damage to Attacks",
+      "Adds ## to ## Elemental Damage to Bow Attacks"
+    ]
+  },
+  "Adds ## to ## Fire Damage to Bow Attacks": {
+    "name": "Adds ## to ## Fire Damage to Bow Attacks",
+    "uses": [
+      "Adds ## to ## Elemental Damage to Bow Attacks"
+    ]
+  },
+  "Adds ## to ## Lightning Damage to Bow Attacks": {
+    "name": "Adds ## to ## Lightning Damage to Bow Attacks",
+    "uses": [
+      "Adds ## to ## Elemental Damage to Bow Attacks"
+    ]
+  },
+  "+## to maximum Life": {
+    "name": "+## to maximum Life",
+    "uses": [
+      "(Total) +## to maximum Life"
+    ]
+  },
+  "Adds ## to ## Cold Damage to Bow Attacks": {
+    "name": "Adds ## to ## Cold Damage to Bow Attacks",
+    "uses": [
+      "Adds ## to ## Elemental Damage to Bow Attacks"
+    ]
+  },
+  "+## to Strength and Intelligence": {
+    "name": "+## to Strength and Intelligence",
+    "uses": [
+      "(Total) +## to maximum Life",
+      "(Total) +## to Strength"
+    ]
+  }
+}

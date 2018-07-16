@@ -1,0 +1,82 @@
+{
+  "(Total) +## to maximum Life": [
+      {
+        "name": "+## to maximum Life",
+        "multiplier": 1
+      },
+      {
+        "name": "+## to Strength",
+        "multiplier": 0.5
+      },
+      {
+        "name": "+## to all Attributes",
+        "multiplier": 0.5
+      },
+      {
+        "name": "+## to Strength and Dexterity",
+        "multiplier": 0.5
+      },
+      {
+        "name": "+## to Strength and Intelligence",
+        "multiplier": 0.5
+      }
+    ],
+  "(Total) +## to Strength": [
+      {
+        "name": "+## to Strength",
+        "multiplier": 0.5
+      },
+      {
+        "name": "+## to all Attributes",
+        "multiplier": 0.5
+      },
+      {
+        "name": "+## to Strength and Dexterity",
+        "multiplier": 0.5
+      },
+      {
+        "name": "+## to Strength and Intelligence",
+        "multiplier": 0.5
+      }
+    ],
+  "Adds ## to ## Elemental Damage to Attacks": [
+      {
+        "name": "Adds ## to ## Fire Damage to Attacks",
+        "multiplier": 1
+      },
+      {
+        "name": "Adds ## to ## Cold Damage to Attacks",
+        "multiplier": 1
+      },
+      {
+        "name": "Adds ## to ## Lightning Damage to Attacks",
+        "multiplier": 1
+      }
+    ],
+  "Adds ## to ## Elemental Damage to Bow Attacks": [
+      {
+        "name": "Adds ## to ## Fire Damage to Attacks",
+        "multiplier": 1
+      },
+      {
+        "name": "Adds ## to ## Cold Damage to Attacks",
+        "multiplier": 1
+      },
+      {
+        "name": "Adds ## to ## Lightning Damage to Attacks",
+        "multiplier": 1
+      },
+      {
+        "name": "Adds ## to ## Fire Damage to Bow Attacks",
+        "multiplier": 1
+      },
+      {
+        "name": "Adds ## to ## Cold Damage to Bow Attacks",
+        "multiplier": 1
+      },
+      {
+        "name": "Adds ## to ## Lightning Damage to Bow Attacks",
+        "multiplier": 1
+      }
+    ]
+}

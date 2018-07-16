@@ -1,0 +1,6 @@
+StashSorter\ProcessItemModsTest.class
+Parser\ParserTest.class
+SpeedTesting\SpeedTestingTest.class
+CompositeModCalculations\ModListCreatorTest.class
+StashSorter\StashSorterTest.class
+SpeedTesting\SpeedTesting.class
