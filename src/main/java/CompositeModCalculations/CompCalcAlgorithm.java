@@ -26,11 +26,11 @@ public class CompCalcAlgorithm {
      * 
      */
     
-    CompositeCalculations calcs;
+    Map<String, CompositeCalculation> calcs;
     Map<String, ModUses> modList;
     
     
-    public CompCalcAlgorithm(CompositeCalculations calcs,  Map<String, ModUses> modList){
+    public CompCalcAlgorithm(Map<String, CompositeCalculation> calcs,  Map<String, ModUses> modList){
         this.calcs = calcs;
         this.modList = modList;
     }
@@ -51,25 +51,49 @@ public class CompCalcAlgorithm {
     }
     
     //Take list of item mods and calculate the specified composite value.
-    public Tuple calcIndividualCompMod(ArrayList<Tuple> itemMods, Mod[] calc, String calcName){
+    public Tuple calcIndividualCompMod(ArrayList<Tuple> itemMods, CompositeCalculation calc){
         float total = 0;
         
-        ArrayList<ValueMultiplierPair> toUse = new ArrayList<>();
-        
         //For each mod in calc
-        for (Mod u: calc){
-            if (isStringInModArrayList(itemMods, u.getName())){//If mod is in itemMods
-                toUse.add(getFromArrayListUsingString(itemMods, calc, u.getName()));
+        
+        /**
+         * What does this method need to do?
+         * 
+         * Parameters: 
+         * calc, a comp mod.
+         * itemMods, processed item mods.
+         * 
+         * it doesn't need ModUses, it needs CompositeCalculation
+         * 
+         * Revised parameters:
+         * calc, a CompositeCalculation.
+         * itemMods, processed item mods.
+         * 
+         * for each mod in calc, if mod is in itemmods
+         *      add value*multiplier to total.
+         **/
+        
+        
+        for (Mod s: calc.getMods()){
+            //if Array of itemMods contains s.name
+            if (isStringInModArrayList(itemMods, s.getName())){
+                ValueMultiplierPair v = getFromArrayListUsingString(itemMods, calc.getMods(), s.getName());
+                total += (v.getValue()*v.getMultiplier());
             }
         }
         
+//        for (Mod u: calc.getValue().uses){
+//            if (isStringInModArrayList(itemMods, u.getName())){//If mod is in itemMods
+//                toUse.add(getFromArrayListUsingString(itemMods, calc, u.getName()));
+//            }
+//        }
+        
         //use multiplier to add to total.
-        for (ValueMultiplierPair t: toUse){
-            total += t.getValue() * t.getMultiplier();
-        }
-        //cake
+//        for (ValueMultiplierPair t: toUse){
+//            total += t.getValue() * t.getMultiplier();
+//        }
         //return final value in tuple form.
-        return new Tuple(calcName, total);
+        return new Tuple(calc.getName(), total);
     }
     
     //If provided string is a key in a tuple in provided array list, return true;

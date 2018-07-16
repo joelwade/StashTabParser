@@ -62,29 +62,6 @@ public class CompCalcAlgorithmTest {
             new Mod("+## to all Attributes", (float) .5),
             new Mod("+## to Strength and Dexterity", (float) .5),
             new Mod("+## to Strength and Intelligence", (float) .5)};
-        CompositeCalculations calcs = new CompositeCalculations().addCalc("(Total) +## to maximum Life", mods);
-        
-        CompCalcAlgorithm instance = new CompCalcAlgorithm(calcs, null);
-        
-        float expResult = (float) 60.0;
-        Tuple result = instance.calcIndividualCompMod(itemMods, mods, "(Total) +## to maximum Life");
-        
-        assertEquals(expResult, (float)result.getValue(),0);
-    }
-    
-    /**
-     * Test of calcIndividualCompMod method, of class CompCalcAlgorithm.
-     * Calculates "(total) +## to maximum Life" from two item mods:
-     * 45 max life and 30 strength
-     */
-    @Test
-    public void testCalcIndividualCompModElementalDamage() throws IOException {
-        //Uses two rolls, 45 max life and 30 strength.
-        System.out.println("testCalcIndividualCompModElementalDamage");
-        ArrayList<Tuple> itemMods = new ArrayList<>();
-        itemMods.add(new Tuple("Adds ## to ## Fire Damage to Attacks", 45));
-        itemMods.add(new Tuple("Adds ## to ## Cold Damage to Attacks", 45));
-        itemMods.add(new Tuple("Adds ## to ## Lightning Damage to Attacks", 30));
         
         Map.Entry<String, ModUses> mapEntry = null;
         Map<String, ModUses> mods2 = ModListCreator.getModMap("src\\main\\java\\CompositeModCalculations\\CompositeCalculations.json");
@@ -95,15 +72,45 @@ public class CompCalcAlgorithmTest {
             }
         }
         
-        CompositeCalculations calcs = new CompositeCalculations().addCalc("(Total) +## to maximum Life", mapEntry);
-        
-        CompCalcAlgorithm instance = new CompCalcAlgorithm(calcs, null);
+        CompCalcAlgorithm instance = new CompCalcAlgorithm(mapEntry, null);
+        CompositeCalculation compp = new CompositeCalculation("(Total) +## to maximum Life", mods);
         
         float expResult = (float) 60.0;
-        Tuple result = instance.calcIndividualCompMod(itemMods, mapEntry, "(Total) +## to maximum Life");
+        Tuple result = instance.calcIndividualCompMod(itemMods, compp);
         
         assertEquals(expResult, (float)result.getValue(),0);
     }
+    
+    /**
+     * Test of calcIndividualCompMod method, of class CompCalcAlgorithm.
+     * Calculates "(total) +## to maximum Life" from two item mods:
+     * 45 max life and 30 strength
+     */
+//    @Test
+//    public void testCalcIndividualCompModElementalDamage() throws IOException {
+//        //Uses two rolls, 45 max life and 30 strength.
+//        System.out.println("testCalcIndividualCompModElementalDamage");
+//        ArrayList<Tuple> itemMods = new ArrayList<>();
+//        itemMods.add(new Tuple("Adds ## to ## Fire Damage to Attacks", 45));
+//        itemMods.add(new Tuple("Adds ## to ## Cold Damage to Attacks", 45));
+//        itemMods.add(new Tuple("Adds ## to ## Lightning Damage to Attacks", 30));
+//        
+//        Map.Entry<String, ModUses> mapEntry = null;
+//        Map<String, ModUses> mods2 = ModListCreator.getModMap("src\\main\\java\\CompositeModCalculations\\CompositeCalculations.json");
+//        for (Map.Entry<String, ModUses> entry : mods2.entrySet()){
+//            if (entry.getKey().equals("(Total) +## to maximum Life")){
+//                mapEntry = entry;
+//                break;
+//            }
+//        }
+//        
+//        CompCalcAlgorithm instance = new CompCalcAlgorithm(mapEntry, null);
+//        
+//        float expResult = (float) 60.0;
+//        Tuple result = instance.calcIndividualCompMod(itemMods, mapEntry);
+//        
+//        assertEquals(expResult, (float)result.getValue(),0);
+//    }
     
     
     
