@@ -1,9 +1,12 @@
 package CompositeModCalculations;
 
+import com.google.gson.Gson;
 import com.mycompany.poe.api.parser.ApiObjects.Tuple;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Joel Wade
@@ -26,61 +29,57 @@ public class CompCalcAlgorithm {
      * 
      */
     
-    Map<String, CompositeCalculation> compCalcs;
+    Map<String, Mod[]> compCalcs;
     Map<String, ModUses> modList;
     
     
-    public CompCalcAlgorithm(Map<String, CompositeCalculation> calcs,  Map<String, ModUses> modList){
+    public CompCalcAlgorithm(Map<String, Mod[]> calcs,  Map<String, ModUses> modList){
         this.compCalcs = calcs;
         this.modList = modList;
     }
 
-    public void calcCompMods(ArrayList<Tuple> itemMods) {
-        HashMap<String, Tuple> calcedMods = new HashMap<>();
+    /**
+     * Pseudo code for calcCompMods:
+     * Create set of composite mods to be calculated.
+     * For each mod in implicit and explicit mods.
+     *      if mod is in mod list.
+     *          get uses, which are composite calculations names, from mod list, add to set
+     *          
+     * end for
+     * Create list of compositeCalculations objects.
+     * for each composite calc in compositeCalculations list
+     *      calcIndividualCompMod
+     * 
+     * @param itemMods
+     * @return ArrayList<Tuple> of calculated composite mods.
+     */
+    public ArrayList<Tuple> calcCompMods(ArrayList<Tuple> itemMods) {
+        //Set is used to remove duplicates.
+        Set<String> toBeCalced = new HashSet<>();
         
         for (Tuple itemMod: itemMods){//For each mod in implicit and explicit mods.
-            ArrayList<String> uses;
-            if (isStringInModArrayList(itemMods, itemMod.getKey())){//if mod is in mod list.
-                uses = getUsesFromModList(itemMod.getKey());
+            if (modList.containsKey(itemMod.getKey())){//if mod is in mod list.
+                //Get uses from mod list and add to uses.
+                ArrayList<String> modUses = modList.get(itemMod.getKey()).uses;
+                for (String s : modUses){
+                    toBeCalced.add(s);
+                }
             }
-            
-            /**
-             * How it works:
-             * 
-             * For each mod in implicit and explicit mods.
-             *      if mod is in mod list.
-             *          get uses, which are composite calculations names, from mod list
-             *          
-             * end for
-             * Create list of compositeCalculations objects.
-             * for each composite calc in compositeCalculations list
-             *      calcIndividualCompMod
-             */
-            
-            //Get uses from mod list.
-            //For each use, get full CompositeCalculation from compCalcs.
-            //calc tuple (using calcIndividualCompMod()) and add to calcedMods.
         }
+        ArrayList<Tuple> calcedMods = new ArrayList<>();
+        
+        for (String s: toBeCalced){
+            if (compCalcs.containsKey(s)){
+                CompositeCalculation temp = new CompositeCalculation(s, compCalcs.get(s));
+                calcedMods.add( calcIndividualCompMod(itemMods, temp) );
+            }
+        }
+        
+        return calcedMods;
     }
     
     //Take list of item mods and calculate the specified composite value.
     public Tuple calcIndividualCompMod(ArrayList<Tuple> itemMods, CompositeCalculation calc){
-        /**
-         * What does this method need to do?
-         * 
-         * Parameters: 
-         * calc, a comp mod.
-         * itemMods, processed item mods.
-         * 
-         * it doesn't need ModUses, it needs CompositeCalculation
-         * 
-         * Revised parameters:
-         * calc, a CompositeCalculation.
-         * itemMods, processed item mods.
-         * 
-         * for each mod in calc, if mod is in itemmods
-         *      add value*multiplier to total.
-         **/
         float total = 0;
         
         for (Mod mod: calc.getMods()){
