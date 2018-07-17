@@ -12,29 +12,12 @@ import java.util.Set;
  * @author Joel Wade
  */
 public class CompCalcAlgorithm {
-    /**
-     * Have loaded already - 
-     * CompCalculations - HashMap.
-     * ModList -  Map<String, Mod[]>.
-     * 
-     *   Create - 
-     *   HashMap of values to calc.
-     * 
-     *  For each mod in implicit and explicit mods.
-     *       Check what comp mods are associated with that mod.
-     *       For each associated comp mod
-     *           if those compCalcs are not in the HashMap.
-     *               Use all mods to calc the full composite mod, add to HashMap. calcIndividualCompMod().
-     *  end for
-     * 
-     */
-    
     Map<String, Mod[]> compCalcs;
     Map<String, ModUses> modList;
     
     
-    public CompCalcAlgorithm(Map<String, Mod[]> calcs,  Map<String, ModUses> modList){
-        this.compCalcs = calcs;
+    public CompCalcAlgorithm(Map<String, Mod[]> compCalcs,  Map<String, ModUses> modList){
+        this.compCalcs = compCalcs;
         this.modList = modList;
     }
 
@@ -53,6 +36,7 @@ public class CompCalcAlgorithm {
      * @param itemMods
      * @return ArrayList<Tuple> of calculated composite mods.
      */
+    
     public ArrayList<Tuple> calcCompMods(ArrayList<Tuple> itemMods) {
         //Set is used to remove duplicates.
         Set<String> toBeCalced = new HashSet<>();

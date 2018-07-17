@@ -15,9 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
-import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.junit.AfterClass;
@@ -31,7 +29,15 @@ import static org.junit.Assert.*;
  */
 public class CompCalcAlgorithmTest {
     
-    public CompCalcAlgorithmTest() {
+    Map<String, ModUses> modList;
+    
+    public CompCalcAlgorithmTest() throws IOException {
+        modList = ModListCreator.getModMap("src\\main\\java\\CompositeModCalculations\\CompositeCalculations.json");
+    }
+    
+    private Map<String, Mod[]> getCompCalc() throws IOException {
+        String ss = inputstreamToString(fileToInputStream("src\\main\\java\\CompositeModCalculations\\CompositeCalculations.json"));
+        return stringToMap(ss);
     }
     
     @BeforeClass
@@ -43,22 +49,11 @@ public class CompCalcAlgorithmTest {
     }
 
     /**
-     * Test of calcCompMods method, of class CompCalcAlgorithm.
-     */
-//    @Test
-//    public void testCalcCompMods() {
-//        System.out.println("calcCompMods");
-//        ArrayList<Tuple> itemMods = null;
-//        CompCalcAlgorithm instance = null;
-//        instance.calcCompMods(itemMods);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-    /**
      * Test of calcIndividualCompMod method, of class CompCalcAlgorithm.
      * Calculates "(total) +## to maximum Life" from two item mods:
      * 45 max life and 30 strength
+     * 
+     * @throws java.io.IOException
      */
     @Test
     public void testCalcIndividualCompModMaxLife() throws IOException {
@@ -68,42 +63,30 @@ public class CompCalcAlgorithmTest {
         itemMods.add(new Tuple("+## to maximum Life", 45));
         itemMods.add(new Tuple("+## to Strength", 30));
         
-        Mod[] mods = {new Mod("+## to maximum Life", 1), 
+        Mod[] mods = {new Mod("+## to maximum Life", 1),
             new Mod("+## to Strength", (float) .5),
             new Mod("+## to all Attributes", (float) .5),
             new Mod("+## to Strength and Dexterity", (float) .5),
             new Mod("+## to Strength and Intelligence", (float) .5)};
         
-        Map<String, ModUses> mods2 = ModListCreator.getModMap("src\\main\\java\\CompositeModCalculations\\CompositeCalculations.json");
-        
-        CompositeCalculation compCalc = new CompositeCalculation("(Total) +## to maximum Life", mods);
-        Map<String, Mod[]> compCalcMap = new HashMap<>();
-        
-        
-        CompCalcAlgorithm instance = new CompCalcAlgorithm(compCalcMap, mods2);
+        CompCalcAlgorithm instance = new CompCalcAlgorithm(getCompCalc(), modList);
         CompositeCalculation compp = new CompositeCalculation("(Total) +## to maximum Life", mods);
         
         float expResult = (float) 60.0;
         Tuple result = instance.calcIndividualCompMod(itemMods, compp);
         
-        
         assertEquals(expResult, (float)result.getValue(),0);
     }
     
     @Test
-    public void testCalcIndividualCompModMaxLife2() throws IOException {
+    public void testcalcCompModsMaxLife() throws IOException {
         //Uses two rolls, 45 max life and 30 strength.
-        System.out.println("testCalcIndividualCompModMaxLife2");
+        System.out.println("testcalcCompModsMaxLife");
         ArrayList<Tuple> itemMods = new ArrayList<>();
         itemMods.add(new Tuple("+## to maximum Life", 45));
         itemMods.add(new Tuple("+## to Strength", 30));
         
-        Map<String, ModUses> mods2 = ModListCreator.getModMap("src\\main\\java\\CompositeModCalculations\\CompositeCalculations.json");
-        
-        String ss = inputstreamToString(fileToInputStream("src\\main\\java\\CompositeModCalculations\\CompositeCalculations.json"));
-        Map<String, Mod[]> compCalcMap = stringToMap(ss);
-        
-        CompCalcAlgorithm instance = new CompCalcAlgorithm(compCalcMap, mods2);
+        CompCalcAlgorithm instance = new CompCalcAlgorithm(getCompCalc(), modList);
         
         float expResult = (float) 60.0;
         ArrayList<Tuple> result1 = instance.calcCompMods(itemMods);
@@ -113,10 +96,96 @@ public class CompCalcAlgorithmTest {
         for (Tuple t: result1){
             if (t.getKey().equals("(Total) +## to maximum Life")){
                 result = (float)t.getValue();
+                break;
             }
         }
         assertEquals(expResult, result,0);
     }
+    
+    @Test
+    public void testcalcCompModsTotalElementalResistance() throws IOException {
+        System.out.println("testcalcCompModsTotalElementalResistance");
+        ArrayList<Tuple> itemMods = new ArrayList<>();
+        itemMods.add(new Tuple("+##% to Fire Resistance", 19));
+        itemMods.add(new Tuple("+##% to Cold Resistance", 18));
+        itemMods.add(new Tuple("+##% to Lightning Resistance", 11));
+        
+        CompCalcAlgorithm instance = new CompCalcAlgorithm(getCompCalc(), modList);
+        
+        int expResult = 48;
+        ArrayList<Tuple> result1 = instance.calcCompMods(itemMods);
+        
+        float result = 0;
+        
+        for (Tuple t: result1){
+            if (t.getKey().equals("(Total) +##% to Elemental Resistances")){
+                result = (float)t.getValue();
+                break;
+            }
+        }
+        assertEquals(expResult, result,0);
+    }
+    
+    @Test
+    public void testcalcCompModsTotalElementalResistanceAllMods() throws IOException {
+        System.out.println("testcalcCompModsTotalElementalResistanceAllMods");
+        ArrayList<Tuple> itemMods = new ArrayList<>();
+        itemMods.add(new Tuple("+##% to Fire Resistance", 19));
+        itemMods.add(new Tuple("+##% to Cold Resistance", 18));
+        itemMods.add(new Tuple("+##% to Lightning Resistance", 11));
+        itemMods.add(new Tuple("+##% to all Elemental Resistances", 8));
+        itemMods.add(new Tuple("+##% to Fire and Lightning Resistances", 25));
+        itemMods.add(new Tuple("+##% to Fire and Cold Resistances", 25));
+        itemMods.add(new Tuple("+##% to Cold and Lightning Resistances", 25));
+        itemMods.add(new Tuple("+## to Strength", 25));
+        
+        CompCalcAlgorithm instance = new CompCalcAlgorithm(getCompCalc(), modList);
+        
+        int expResult = 131;
+        ArrayList<Tuple> result1 = instance.calcCompMods(itemMods);
+        
+        float result = 0;
+        
+        for (Tuple t: result1){
+            if (t.getKey().equals("(Total) +##% to Elemental Resistances")){
+                result = (float)t.getValue();
+                break;
+            }
+        }
+        assertEquals(expResult, result,0);
+    }
+    
+    @Test
+    public void testcalcCompModsTotalResistance() throws IOException {
+        System.out.println("testcalcCompModsTotalResistance");
+        //Setup implict and explict mod array list
+        ArrayList<Tuple> itemMods = new ArrayList<>();
+        itemMods.add(new Tuple("+##% to Fire Resistance", 19));
+        itemMods.add(new Tuple("+##% to Cold Resistance", 18));
+        itemMods.add(new Tuple("+##% to Lightning Resistance", 11));
+        itemMods.add(new Tuple("+##% to all Elemental Resistances", 8));
+        itemMods.add(new Tuple("+##% to Fire and Lightning Resistances", 25));
+        itemMods.add(new Tuple("+##% to Fire and Cold Resistances", 25));
+        itemMods.add(new Tuple("+##% to Cold and Lightning Resistances", 25));
+        itemMods.add(new Tuple("+##% to Chaos Resistance", 15));
+        
+        CompCalcAlgorithm instance = new CompCalcAlgorithm(getCompCalc(), modList);
+        
+        int expResult = 146;
+        ArrayList<Tuple> result1 = instance.calcCompMods(itemMods);
+        
+        float result = 0;
+        
+        for (Tuple t: result1){
+            if (t.getKey().equals("(Total) +##% to Resistances")){
+                result = (float)t.getValue();
+                break;
+            }
+        }
+        assertEquals(expResult, result,0);
+    }
+    
+    
     
     //Takes file path of comp calcs, normally compositeCalculationsFilePath, and returns input stream.
     private static FileInputStream fileToInputStream(String filePath) throws FileNotFoundException{

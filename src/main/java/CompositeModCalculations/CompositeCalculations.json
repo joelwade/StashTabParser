@@ -78,5 +78,69 @@
         "name": "Adds ## to ## Lightning Damage to Bow Attacks",
         "multiplier": 1
       }
+    ],
+   "(Total) +##% to Elemental Resistances" : [
+      {
+        "name": "+##% to Fire Resistance",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to Cold Resistance",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to Lightning Resistance",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to all Elemental Resistances",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to Fire and Cold Resistances",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to Fire and Lightning Resistances",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to Cold and Lightning Resistances",
+        "multiplier": 1
+      }
+    ],
+    "(Total) +##% to Resistances" : [
+      {
+        "name": "+##% to Fire Resistance",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to Cold Resistance",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to Lightning Resistance",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to all Elemental Resistances",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to Fire and Cold Resistances",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to Fire and Lightning Resistances",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to Cold and Lightning Resistances",
+        "multiplier": 1
+      },
+      {
+        "name": "+##% to Chaos Resistance",
+        "multiplier": 1
+      }
     ]
 }

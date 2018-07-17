@@ -359,4 +359,18 @@ public class ProcessItemModsTest {
         assertEquals(expResult.get(0).getValue().toString(), result.get(0).getValue());
     }
     
+    @Test
+    public void testProcessMods_EleResistance() {
+        System.out.println("testProcessMods_Resistance");
+        String[] s = new String[1];
+        s[0] = "+19% to Fire Resistance";
+        
+        ProcessItemMods instance = new ProcessItemMods();
+        ArrayList<Tuple> expResult = new ArrayList<>();
+        expResult.add(new Tuple("+##% to Fire Resistance", 19));
+        ArrayList<Tuple> result = instance.processMods(s);
+        
+        assertEquals(expResult.get(0).getValue().toString(), result.get(0).getValue());
+    }
+    
 }
