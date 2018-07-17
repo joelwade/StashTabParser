@@ -372,6 +372,7 @@ public class ProcessItemModsTest {
         
         assertEquals(expResult.get(0).getValue().toString(), result.get(0).getValue());
     }
+    //
     
     @Test
     public void testProcessMods_EleResistance2() {
