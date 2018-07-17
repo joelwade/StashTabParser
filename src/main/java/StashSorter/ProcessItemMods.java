@@ -15,10 +15,13 @@ import java.util.regex.Pattern;
  * @author Joel Wade
  */
 public class ProcessItemMods {
-    
-    public ArrayList<Tuple> processMods(String[] s){
+
+    public ArrayList<Tuple> processMods(String[] s) {
+        if (s==null || s.length<=0){
+            return new ArrayList<>();
+        }
         ArrayList<Tuple> mods = new ArrayList<>();
-        for (int x = 0; x == s.length-1; x++){
+        for (int x = 0; x <= s.length-1; x++){
             mods.add(processMod(s[x]));
         }
         return mods;

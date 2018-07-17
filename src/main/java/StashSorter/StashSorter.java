@@ -6,6 +6,9 @@
 
 package StashSorter;
 
+import CompositeModCalculations.CompCalcAlgorithm;
+import CompositeModCalculations.Mod;
+import CompositeModCalculations.ModUses;
 import com.mycompany.poe.api.parser.ApiObjects.Tuple;
 import com.mycompany.poe.api.parser.ApiObjects.Stash;
 import com.mycompany.poe.api.parser.ApiObjects.Item;
@@ -17,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 /**
  *
@@ -24,13 +28,16 @@ import java.util.Scanner;
  */
 public class StashSorter {
     
-    //Could create a list unneeded of values to null.
-    
     private Stash stashIn;
     private Stash stashOut;
+    
+    Map<String, Mod[]> compCalcs;
+    Map<String, ModUses> modList;
 
-    public StashSorter(Stash stashIn) {
+    public StashSorter(Stash stashIn, Map<String, ModUses> modList, Map<String, Mod[]> compCalcs) {
         this.stashIn = stashIn;
+        this.compCalcs = compCalcs;
+        this.modList = modList;
     }
     
     public void setStash(Stash s){
@@ -47,26 +54,21 @@ public class StashSorter {
         //Calc alt art bool.
 
         if (i.category.accessories != null){
+            i = processItemMods(i);
             i.categoryType = "accessories";
             i.categorySpecific = i.category.accessories[0];
         } else if (i.category.armour != null){
+            i = processItemMods(i);
             i.categoryType = "armour";
             if (i.category.armour[0] != null){
                 i.categorySpecific = i.category.armour[0];
             }
             processArmour(i);
-        } else if (i.category.gems != null){
-            i.categoryType = "gems";
-            i.categorySpecific = i.category.gems[0];
-            processGem(i);
         } else if (i.category.jewels != null){
+            i = processItemMods(i);
             i.categoryType = "jewels";
-            if (i.category.jewels.length == 0){
-//                processTotalMods(i, itemType.ABYSS_JEWEL);
-            } else {
-//                processTotalMods(i, itemType.JEWEL);
-            }
         } else if (i.category.weapons != null){
+            i = processItemMods(i);
             i.categoryType = "weapons";
             i.categorySpecific = i.category.weapons[0];
             processWeapon(i);
@@ -76,16 +78,42 @@ public class StashSorter {
             i.categoryType = "flasks";
         } else if (i.category.maps != null){
             i.categoryType = "maps";
+        } else if (i.category.gems != null){
+            i.categoryType = "gems";
+            i.categorySpecific = i.category.gems[0];
+            processGem(i);
         }
-        
-        //Calc max life inc master mods and str
         
         return i;
     }
     
-    private enum itemType {
-        WEAPON, ARMOUR, JEWEL, ABYSS_JEWEL
+    private Item processItemMods(Item i){
+        /**
+         * Process mods for all 5 lists of mods:
+         *  public String[] enchantMods;
+         *  public String[] implicitMods;
+         *  public String[] explicitMods;
+         *  public String[] craftedMods;
+         *  public String[] utilityMods;
+         * 
+         */
+        ArrayList<Tuple> mods = new ArrayList<>();
+        ProcessItemMods modProcessor = new ProcessItemMods();
+        mods.addAll(modProcessor.processMods(i.enchantMods));
+        mods.addAll(modProcessor.processMods(i.implicitMods));
+        mods.addAll(modProcessor.processMods(i.explicitMods));
+        mods.addAll(modProcessor.processMods(i.craftedMods));
+        mods.addAll(modProcessor.processMods(i.utilityMods));
+        
+        CompCalcAlgorithm compCalc = new CompCalcAlgorithm(compCalcs, modList);
+        i.calculatedTotalValues = compCalc.calcCompMods(mods);
+        
+        return i;
     }
+    
+//    private enum itemType {
+//        WEAPON, ARMOUR, JEWEL, ABYSS_JEWEL
+//    }
     
     private Item processWeapon(Item i){
         //calc different dps

@@ -102,7 +102,6 @@ public class Item {
     public int whiteSocketCount;
     //Misc
     public int quality;
-    public int abyssalSockets;
     public int craftedModsCount;
     public Boolean altArt;//Calc
     public String itemType; //Amulet, boots, belt, etc.

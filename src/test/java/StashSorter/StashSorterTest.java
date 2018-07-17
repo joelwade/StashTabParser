@@ -36,7 +36,9 @@ public class StashSorterTest {
         
         Injector injector = Guice.createInjector(new ParserSetup());
         
-        StashSorter ss = new StashSorter(file.stashes[0]);
+        StashSorter ss = new StashSorter(file.stashes[0],
+                Utils.GetObjectsFromJson.getModList("src\\main\\java\\CompositeModCalculations\\ModList.json"),
+                Utils.GetObjectsFromJson.getCompCalcsMap("src\\main\\java\\CompositeModCalculations\\CompositeCalculations.json"));
         items = ss.getProcessedItems();
     }
     
@@ -59,7 +61,7 @@ public class StashSorterTest {
      * Helmet with 90% bladefall crit enchant.
      */
     public FileInputStream fileToInputStream() throws FileNotFoundException{
-        return new FileInputStream("src\\main\\java\\Testing\\stashSorterTestJson.json");
+        return new FileInputStream("src\\test\\java\\StashSorter\\stashSorterTestJson.json");
     }
     
     @BeforeClass
@@ -307,5 +309,30 @@ public class StashSorterTest {
         }
         
         assertEquals(totalQuality, qualityFromParser);
+    }
+    
+    //Tests composite mod (Total) +##% to Resistances
+    @Test
+    public void testDoomDashTotalResistances(){
+        System.out.println("testDoomDashTotalResistances");
+        final int totalRes = 51;
+        float resFromParser = 0;
+        for (Item i: items){
+            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Doom Dash")){
+                if (i.calculatedTotalValues == null){
+                    System.out.println("null");
+                } else {
+                    System.out.println(i.calculatedTotalValues.size());
+                }
+                for (Tuple t : i.calculatedTotalValues){
+                    if (t.getKey().equals("(Total) +##% to Resistances")){
+                        resFromParser = (float) t.getValue();
+                        break;
+                    }
+                }
+            }
+        }
+        
+        assertEquals(totalRes, resFromParser,0);
     }
 }
