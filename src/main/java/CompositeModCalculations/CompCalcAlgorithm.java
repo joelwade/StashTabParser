@@ -1,9 +1,7 @@
 package CompositeModCalculations;
 
-import com.google.gson.Gson;
 import com.mycompany.poe.api.parser.ApiObjects.Tuple;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -14,7 +12,6 @@ import java.util.Set;
 public class CompCalcAlgorithm {
     Map<String, Mod[]> compCalcs;
     Map<String, ModUses> modList;
-    
     
     public CompCalcAlgorithm(Map<String, Mod[]> compCalcs,  Map<String, ModUses> modList){
         this.compCalcs = compCalcs;
