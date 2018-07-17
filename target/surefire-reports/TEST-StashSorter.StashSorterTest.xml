@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="17" failures="0" name="StashSorter.StashSorterTest" time="0.003" errors="0" skipped="0">
+<testsuite tests="20" failures="0" name="StashSorter.StashSorterTest" time="0.005" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_73\jre\bin"/>
@@ -66,20 +66,23 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase classname="StashSorter.StashSorterTest" name="testMaliciousClawTotalDamage" time="0.002"/>
+  <testcase classname="StashSorter.StashSorterTest" name="testDoomDashSocketCount" time="0"/>
   <testcase classname="StashSorter.StashSorterTest" name="testLeapSlamExp" time="0"/>
   <testcase classname="StashSorter.StashSorterTest" name="testDoomDashTotalResistances" time="0"/>
-  <testcase classname="StashSorter.StashSorterTest" name="testRothsReachQuality" time="0"/>
+  <testcase classname="StashSorter.StashSorterTest" name="testRothsReachQuality" time="0.001"/>
+  <testcase classname="StashSorter.StashSorterTest" name="testDoomDashTotalResistances2" time="0"/>
   <testcase classname="StashSorter.StashSorterTest" name="testPurtiyOfFireStrengthRequired" time="0"/>
+  <testcase classname="StashSorter.StashSorterTest" name="testDoomDashSocketColours" time="0.001"/>
   <testcase classname="StashSorter.StashSorterTest" name="testBroodWrapQuality" time="0"/>
   <testcase classname="StashSorter.StashSorterTest" name="testDarkRayQuality" time="0"/>
   <testcase classname="StashSorter.StashSorterTest" name="testMaliciousClawChaosDamage" time="0"/>
   <testcase classname="StashSorter.StashSorterTest" name="testPurtiyOfFireIntelligenceRequired" time="0"/>
   <testcase classname="StashSorter.StashSorterTest" name="testPainBaneTotallDamage" time="0"/>
   <testcase classname="StashSorter.StashSorterTest" name="testPurityOfFireExp" time="0"/>
-  <testcase classname="StashSorter.StashSorterTest" name="testPainBaneElementalDamage" time="0.001"/>
+  <testcase classname="StashSorter.StashSorterTest" name="testPainBaneElementalDamage" time="0"/>
   <testcase classname="StashSorter.StashSorterTest" name="testPurtiyOfFireLevelRequired" time="0"/>
   <testcase classname="StashSorter.StashSorterTest" name="testPurtiyOfFireLevel" time="0"/>
   <testcase classname="StashSorter.StashSorterTest" name="testSparkQuality" time="0"/>
-  <testcase classname="StashSorter.StashSorterTest" name="testImmortalCallExp" time="0"/>
+  <testcase classname="StashSorter.StashSorterTest" name="testImmortalCallExp" time="0.001"/>
   <testcase classname="StashSorter.StashSorterTest" name="testNothing" time="0"/>
 </testsuite>

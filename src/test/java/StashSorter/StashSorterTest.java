@@ -319,11 +319,6 @@ public class StashSorterTest {
         float resFromParser = 0;
         for (Item i: items){
             if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Doom Dash")){
-                if (i.calculatedTotalValues == null){
-                    System.out.println("null");
-                } else {
-                    System.out.println(i.calculatedTotalValues.size());
-                }
                 for (Tuple t : i.calculatedTotalValues){
                     if (t.getKey().equals("(Total) +##% to Resistances")){
                         resFromParser = (float) t.getValue();
@@ -334,5 +329,58 @@ public class StashSorterTest {
         }
         
         assertEquals(totalRes, resFromParser,0);
+    }
+    
+    //Tests composite mod (Total) +##% to Resistances
+    @Test
+    public void testDoomDashTotalResistances2(){
+        System.out.println("testDoomDashTotalResistances2");
+        final int totalRes = 28;
+        float resFromParser = 0;
+        for (Item i: items){
+            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Doom Dash")){
+                for (Tuple t : i.calculatedTotalValues){
+                    if (t.getKey().equals("(Total) +##% to Elemental Resistances")){
+                        resFromParser = (float) t.getValue();
+                        break;
+                    }
+                }
+            }
+        }
+        
+        assertEquals(totalRes, resFromParser,0);
+    }
+    
+    //<<set:MS>><<set:M>><<set:S>>Doom Dash
+    @Test
+    public void testDoomDashSocketCount(){
+        System.out.println("testDoomDashSocketCount");
+        final int socketCount = 4;
+        float socketCountFromParser = 0;
+        for (Item i: items){
+            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Doom Dash")){
+                socketCountFromParser = i.socketCount;
+            }
+        }
+        
+        assertEquals(socketCount, socketCountFromParser,0);
+    }
+    
+    //<<set:MS>><<set:M>><<set:S>>Doom Dash
+    @Test
+    public void testDoomDashSocketColours(){
+        System.out.println("testDoomDashSocketColours");
+        int[] socketColoursFromParser = {0,0,0,0};
+        int[] socketColours = {3,1,0,0};
+        for (Item i: items){
+            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Doom Dash")){
+                socketColoursFromParser[0] = i.redSocketCount;
+                socketColoursFromParser[1] = i.greenSocketCount;
+                socketColoursFromParser[2] = i.blueSocketCount;
+                socketColoursFromParser[3] = i.whiteSocketCount;
+            }
+        }
+        
+        assertArrayEquals(socketColours, socketColoursFromParser);
     }
 }

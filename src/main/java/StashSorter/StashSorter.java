@@ -13,15 +13,10 @@ import com.mycompany.poe.api.parser.ApiObjects.Tuple;
 import com.mycompany.poe.api.parser.ApiObjects.Stash;
 import com.mycompany.poe.api.parser.ApiObjects.Item;
 import com.mycompany.poe.api.parser.ApiObjects.Properties;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import com.mycompany.poe.api.parser.ApiObjects.Sockets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
-import java.util.Scanner;
 /**
  *
  * @author Joel Wade
@@ -63,7 +58,7 @@ public class StashSorter {
             if (i.category.armour[0] != null){
                 i.categorySpecific = i.category.armour[0];
             }
-            processArmour(i);
+            i = processArmour(i);
         } else if (i.category.jewels != null){
             i = processItemMods(i);
             i.categoryType = "jewels";
@@ -71,7 +66,7 @@ public class StashSorter {
             i = processItemMods(i);
             i.categoryType = "weapons";
             i.categorySpecific = i.category.weapons[0];
-            processWeapon(i);
+            i = processWeapon(i);
         } else if (i.category.cards != null){
             i.categoryType = "cards";
         } else if (i.category.flasks != null){
@@ -81,7 +76,11 @@ public class StashSorter {
         } else if (i.category.gems != null){
             i.categoryType = "gems";
             i.categorySpecific = i.category.gems[0];
-            processGem(i);
+            i = processGem(i);
+        }
+        
+        if (i.sockets != null){
+            i = processSockets(i);
         }
         
         return i;
@@ -225,42 +224,42 @@ public class StashSorter {
         //Enchanted mod.
         //append to file if not already there.
         //add to item.
-        if (i.enchantMods != null){
-            addEnchantToFile(i);
-            //If enchant is "adds xx-yy" then work out avg.
-            i.enchantedMod = new Tuple("0", i.enchantMods[0]);
-        }
+//        if (i.enchantMods != null){
+//            addEnchantToFile(i);
+//            //If enchant is "adds xx-yy" then work out avg.
+//            i.enchantedMod = new Tuple("0", i.enchantMods[0]);
+//        }
         
         return i;
     }
     
-    private void addEnchantToFile(Item i){
-        File file = new File("src\\main\\java\\Testing\\enchants.txt");
-        try {
-            Scanner scanner = new Scanner(file);
-            //now read the file line by line...
-            int lineNum = 0;
-            boolean add = true;
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                lineNum++;
-                if(line.equals( i.enchantMods[0] )) { 
-                    add = false;
-                }
-            }
-            if (add){
-                try {
-                    Files.write(Paths.get("src\\main\\java\\Testing\\enchants.txt"), "\n".getBytes(), StandardOpenOption.APPEND);
-                    Files.write(Paths.get("src\\main\\java\\Testing\\enchants.txt"), i.enchantMods[0].getBytes(), StandardOpenOption.APPEND);
-                }catch (IOException e) {
-                    System.out.println("Error 1 in stashSorter, method addEnchantToFile.");
-                }
-            }
-        } catch(FileNotFoundException e) { 
-            System.out.println("Error 2 in stashSorter, method addEnchantToFile.");
-        }
-
-    }
+//    private void addEnchantToFile(Item i){
+//        File file = new File("src\\main\\java\\Testing\\enchants.txt");
+//        try {
+//            Scanner scanner = new Scanner(file);
+//            //now read the file line by line...
+//            int lineNum = 0;
+//            boolean add = true;
+//            while (scanner.hasNextLine()) {
+//                String line = scanner.nextLine();
+//                lineNum++;
+//                if(line.equals( i.enchantMods[0] )) { 
+//                    add = false;
+//                }
+//            }
+//            if (add){
+//                try {
+//                    Files.write(Paths.get("src\\main\\java\\Testing\\enchants.txt"), "\n".getBytes(), StandardOpenOption.APPEND);
+//                    Files.write(Paths.get("src\\main\\java\\Testing\\enchants.txt"), i.enchantMods[0].getBytes(), StandardOpenOption.APPEND);
+//                }catch (IOException e) {
+//                    System.out.println("Error 1 in stashSorter, method addEnchantToFile.");
+//                }
+//            }
+//        } catch(FileNotFoundException e) { 
+//            System.out.println("Error 2 in stashSorter, method addEnchantToFile.");
+//        }
+//
+//    }
     
     private Item processGem(Item i){
         //Work out % way thru level
@@ -286,9 +285,43 @@ public class StashSorter {
         return i;
     }
     
+    /**
+     * Used to populate the following variables in item:
+     * socketCount
+     * maxLinks
+     * redSocketCount;
+     * greenSocketCount;
+     * blueSocketCount;
+     * whiteSocketCount
+     * 
+     * @param i
+     * @return i
+     */
     private Item processSockets(Item i){
+        i.socketCount = i.sockets.length;
         
+        int[] socketGroup = new int[6];
+        i.redSocketCount = 0;
+        i.greenSocketCount = 0;
+        i.blueSocketCount = 0;
+        i.whiteSocketCount = 0;
+        i.socketCount = 0;
         
+        for (Sockets s: i.sockets){
+            if (s.sColour.equals("R")){
+                i.redSocketCount++;
+            } else if (s.sColour.equals("G")){
+                i.greenSocketCount++;
+            } else if (s.sColour.equals("B")){
+                i.blueSocketCount++;
+            } else if (s.sColour.equals("W")){
+                i.whiteSocketCount++;
+            }
+            i.socketCount++;
+            socketGroup[s.group] ++;
+        }
+        
+        i.maxLinks = Arrays.stream(socketGroup).max().getAsInt();
         
         return i;
     }

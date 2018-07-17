@@ -71,14 +71,6 @@ public class Item {
     public String accountName;
     public String lastCharacterName;
     
-    //To create in processing
-    //General stats
-    //Max life, total res, total ele res.
-    
-    //Could work out certain mods on front end, for example life.
-    //or attack speed on jewels. Probably not.
-    //Still need to process explicit mods.
-    
     //Weapon stats
     public int physDps;//Currently not calced with 20q for non-corrupted items.
     public int eleDps;
@@ -94,7 +86,7 @@ public class Item {
 //    public int currentLvlPercent;
 //    public int currentLevel;
     //Socket info
-    public int totalSockets;
+    public int socketCount;
     public int maxLinks;
     public int redSocketCount;
     public int greenSocketCount;
