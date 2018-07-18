@@ -6,8 +6,8 @@
 package StashSorter;
 
 import DependencyInjector.ParserSetup;
+import Parser.Parser;
 import com.mycompany.poe.api.parser.ApiObjects.Tuple;
-import SpeedTesting.SpeedTesting;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.mycompany.poe.api.parser.ApiObjects.GGGFileData;
@@ -25,14 +25,16 @@ import static org.junit.Assert.*;
  *
  * @author Joel Wade
  */
+
 public class StashSorterTest {
     
     ArrayList<Item> items;
     public StashSorterTest() throws IOException {
         //Get stashSorterTestJson.json, convert to object.
         
-        SpeedTesting instance = new SpeedTesting();
-        GGGFileData file = instance.stringToGGGJsonFile(instance.inputstreamToString10(fileToInputStream()));
+        
+        Parser instance = new Parser(null);
+        GGGFileData file = instance.stringToGGGJsonFile(instance.inputstreamToString(fileToInputStream()));
         
         Injector injector = Guice.createInjector(new ParserSetup());
         
@@ -374,6 +376,99 @@ public class StashSorterTest {
         int[] socketColours = {3,1,0,0};
         for (Item i: items){
             if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Doom Dash")){
+                socketColoursFromParser[0] = i.redSocketCount;
+                socketColoursFromParser[1] = i.greenSocketCount;
+                socketColoursFromParser[2] = i.blueSocketCount;
+                socketColoursFromParser[3] = i.whiteSocketCount;
+            }
+        }
+        
+        assertArrayEquals(socketColours, socketColoursFromParser);
+    }
+    
+    //<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg
+    @Test
+    public void testPandemoniumNeedleSocketColours(){
+        System.out.println("testPandemoniumNeedleSocketColours");
+        int[] socketColoursFromParser = {0,0,0,0};
+        int[] socketColours = {1,2,0,0};
+        for (Item i: items){
+            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg")){
+                socketColoursFromParser[0] = i.redSocketCount;
+                socketColoursFromParser[1] = i.greenSocketCount;
+                socketColoursFromParser[2] = i.blueSocketCount;
+                socketColoursFromParser[3] = i.whiteSocketCount;
+            }
+        }
+        
+        assertArrayEquals(socketColours, socketColoursFromParser);
+    }
+    
+    //<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg
+    @Test
+    public void testPandemoniumNeedleSocketCount(){
+        System.out.println("testPandemoniumNeedleSocketCount");
+        int socketCountFromParser = 3;
+        int socketCount = 0;
+        for (Item i: items){
+            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg")){
+                socketCount = i.socketCount;
+            }
+        }
+        
+        assertEquals(socketCount, socketCountFromParser);
+    }
+    
+    //<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg
+    @Test
+    public void testPandemoniumNeedleMaxLinks(){
+        System.out.println("testPandemoniumNeedleMaxLinks");
+        int maxLinksFromParser = 2;
+        int maxLinks = 0;
+        for (Item i: items){
+            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg")){
+                maxLinks = i.maxLinks;
+            }
+        }
+        
+        assertEquals(maxLinks, maxLinksFromParser);
+    }
+    
+    @Test
+    public void testTabulaRasaMaxLinks(){
+        System.out.println("testTabulaRasaMaxLinks");
+        int maxLinksFromParser = 6;
+        int maxLinks = 0;
+        for (Item i: items){
+            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Tabula Rasa")){
+                maxLinks = i.maxLinks;
+            }
+        }
+        
+        assertEquals(maxLinks, maxLinksFromParser);
+    }
+    
+    @Test
+    public void testTabulaRasaMaxSockets(){
+        System.out.println("testTabulaRasaMaxSockets");
+        int socketCountFromParser = 6;
+        int socketCount = 0;
+        for (Item i: items){
+            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Tabula Rasa")){
+                socketCount = i.socketCount;
+            }
+        }
+        
+        assertEquals(socketCount, socketCountFromParser);
+    }
+    
+    @Test
+    public void testTabulaRasaSocketColours(){
+        System.out.println("testTabulaRasaSocketColours");
+        int[] socketColoursFromParser = {0,0,0,0};
+        int[] socketColours = {0,0,0,6};
+        for (Item i: items){
+            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Tabula Rasa")){
                 socketColoursFromParser[0] = i.redSocketCount;
                 socketColoursFromParser[1] = i.greenSocketCount;
                 socketColoursFromParser[2] = i.blueSocketCount;

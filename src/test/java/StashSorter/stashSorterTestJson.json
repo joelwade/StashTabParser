@@ -8,7 +8,222 @@
       "lastCharacterName": "temniypoputchik_ts",
       "stash": "What i need",
       "stashType": "PremiumStash",
-      "items": [
+      "items": [{
+          "verified": false,
+          "w": 2,
+          "h": 3,
+          "ilvl": 23,
+          "icon": "http://web.poecdn.com/image/Art/2DItems/Armours/BodyArmours/TabulaRasa.png?scale=1&scaleIndex=0&w=2&h=3&v=c169e1ab88583925693bb3a35cc49b6b",
+          "league": "Standard",
+          "id": "15e0db08a04ccee6cf304e41605f5c6f6f9ec2b902e31f4afa0dceef4f95ddfe",
+          "sockets": [
+            {
+              "group": 0,
+              "attr": "G",
+              "sColour": "W"
+            },
+            {
+              "group": 0,
+              "attr": "G",
+              "sColour": "W"
+            },
+            {
+              "group": 0,
+              "attr": "G",
+              "sColour": "W"
+            },
+            {
+              "group": 0,
+              "attr": "G",
+              "sColour": "W"
+            },
+            {
+              "group": 0,
+              "attr": "G",
+              "sColour": "W"
+            },
+            {
+              "group": 0,
+              "attr": "G",
+              "sColour": "W"
+            }
+          ],
+          "name": "<<set:MS>><<set:M>><<set:S>>Tabula Rasa",
+          "typeLine": "Simple Robe",
+          "identified": true,
+          "corrupted": true,
+          "implicitMods": [
+            "16% chance to Avoid being Ignited"
+          ],
+          "frameType": 3,
+          "category": {
+            "armour": [
+              "chest"
+            ]
+          },
+          "x": 6,
+          "y": 6,
+          "inventoryId": "Stash39",
+          "socketedItems": [
+            
+          ]
+        },
+          {
+          "verified": false,
+          "w": 1,
+          "h": 3,
+          "ilvl": 80,
+          "icon": "http://web.poecdn.com/image/Art/2DItems/Weapons/OneHandWeapons/OneHandSwords/OneHandSword3.png?scale=1&scaleIndex=0&w=1&h=3&v=0bf4b174a0c80b2fd80a12026ed04a05",
+          "league": "Standard",
+          "id": "302bba2bd3aeb4763ec6343f1fc4994a63606090e71500818d59129975965073",
+          "sockets": [
+            {
+              "group": 0,
+              "attr": "D",
+              "sColour": "G"
+            },
+            {
+              "group": 0,
+              "attr": "D",
+              "sColour": "G"
+            },
+            {
+              "group": 1,
+              "attr": "S",
+              "sColour": "R"
+            }
+          ],
+          "name": "<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg",
+          "typeLine": "Corsair Sword",
+          "identified": true,
+          "properties": [
+            {
+              "name": "One Handed Sword",
+              "values": [
+                
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Physical Damage",
+              "values": [
+                [
+                  "20-80",
+                  0
+                ]
+              ],
+              "displayMode": 0,
+              "type": 9
+            },
+            {
+              "name": "Elemental Damage",
+              "values": [
+                [
+                  "42-81",
+                  4
+                ],
+                [
+                  "39-83",
+                  5
+                ],
+                [
+                  "3-72",
+                  6
+                ]
+              ],
+              "displayMode": 0,
+              "type": 10
+            },
+            {
+              "name": "Critical Strike Chance",
+              "values": [
+                [
+                  "5.80%",
+                  1
+                ]
+              ],
+              "displayMode": 0,
+              "type": 12
+            },
+            {
+              "name": "Attacks per Second",
+              "values": [
+                [
+                  "1.55",
+                  0
+                ]
+              ],
+              "displayMode": 0,
+              "type": 13
+            },
+            {
+              "name": "Weapon Range",
+              "values": [
+                [
+                  "9",
+                  0
+                ]
+              ],
+              "displayMode": 0,
+              "type": 14
+            }
+          ],
+          "requirements": [
+            {
+              "name": "Level",
+              "values": [
+                [
+                  "60",
+                  0
+                ]
+              ],
+              "displayMode": 0
+            },
+            {
+              "name": "Str",
+              "values": [
+                [
+                  "81",
+                  0
+                ]
+              ],
+              "displayMode": 1
+            },
+            {
+              "name": "Dex",
+              "values": [
+                [
+                  "117",
+                  0
+                ]
+              ],
+              "displayMode": 1
+            }
+          ],
+          "implicitMods": [
+            "40% increased Global Accuracy Rating"
+          ],
+          "explicitMods": [
+            "Adds 42 to 81 Fire Damage",
+            "Adds 39 to 83 Cold Damage",
+            "Adds 3 to 72 Lightning Damage",
+            "16% increased Critical Strike Chance",
+            "31% increased Stun Duration on Enemies",
+            "10% increased Poison Duration"
+          ],
+          "frameType": 2,
+          "category": {
+            "weapons": [
+              "onesword"
+            ]
+          },
+          "x": 2,
+          "y": 5,
+          "inventoryId": "Stash28",
+          "socketedItems": [
+            
+          ]
+        },
           {
           "verified": false,
           "w": 2,

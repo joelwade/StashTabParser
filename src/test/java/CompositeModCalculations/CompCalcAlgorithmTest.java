@@ -185,22 +185,20 @@ public class CompCalcAlgorithmTest {
         assertEquals(expResult, result,0);
     }
     
-    
-    
     //Takes file path of comp calcs, normally compositeCalculationsFilePath, and returns input stream.
-    private static FileInputStream fileToInputStream(String filePath) throws FileNotFoundException{
+    private static FileInputStream fileToInputStream(String filePath) throws FileNotFoundException {
         String path = new File(filePath).getAbsolutePath();
 
         return new FileInputStream(path);
     }
     
     //takes input stream, typically from fileToInputStream, and returns a string.
-    private static String inputstreamToString(FileInputStream inputStream) throws IOException{
+    private static String inputstreamToString(FileInputStream inputStream) throws IOException {
         return IOUtils.toString(inputStream, StandardCharsets.UTF_8.name());
     }
     
     //Takes string, typically from inputstreamToString, and returns a Map.
-    private static Map<String, Mod[]> stringToMap(String s){
+    private static Map<String, Mod[]> stringToMap(String s) {
         Gson gson = new GsonBuilder().setLenient().create();
         
         Type stringStringMap = new TypeToken<Map<String, Mod[]>>(){}.getType();
@@ -208,5 +206,4 @@ public class CompCalcAlgorithmTest {
 
         return map;
     }
-    
 }

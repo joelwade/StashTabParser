@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="24" failures="0" name="StashSorter.ProcessItemModsTest" time="0.011" errors="0" skipped="0">
+<testsuite tests="24" failures="0" name="StashSorter.ProcessItemModsTest" time="0.012" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_73\jre\bin"/>
@@ -15,7 +15,6 @@
     <property name="user.country" value="GB"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
-    <property name="test" value="StashSorter.ProcessItemModsTest"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="user.dir" value="C:\Users\hj\Desktop\testing\StashTabParser"/>
     <property name="java.runtime.version" value="1.8.0_73-b02"/>
@@ -48,7 +47,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_73\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=StashSorter.ProcessItemModsTest -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.1\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 surefire:test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.1\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 clean install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -65,25 +64,25 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_FlatColdDamageWithShieldsValue" time="0.007"/>
+  <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_FlatColdDamageWithShieldsValue" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_SocketedSpellsPlusCritValue" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_EleResistance2" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_FlatLightningDamageWithBowsValue" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_ColdResistanceKey" time="0"/>
-  <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_MaximumLifeKey" time="0.001"/>
+  <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_MaximumLifeKey" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_SocketedSpellsPlusCritKey" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_TornadoShotHelmProjectilesKey" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_ColdResistanceValue" time="0.001"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_PercentIASValue" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_PercentIASKey" time="0"/>
-  <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_SocketedGemsValue" time="0.001"/>
+  <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_SocketedGemsValue" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_SpellsPlusCritKey" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_SpellsPlusCritValue" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_MaximumLifeValue" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_EleResistance" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_HeadhunterDamageKey" time="0"/>
-  <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_FlatColdDamageWithShieldsKey" time="0.001"/>
-  <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_TornadoShotHelmProjectilesValue" time="0"/>
+  <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_FlatColdDamageWithShieldsKey" time="0"/>
+  <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_TornadoShotHelmProjectilesValue" time="0.011"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_DyingSunFlatProjectileKey" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_FlatLightningDamageWithBowsKey" time="0"/>
   <testcase classname="StashSorter.ProcessItemModsTest" name="testProcessMods_SocketedGemsKey" time="0"/>

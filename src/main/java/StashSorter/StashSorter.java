@@ -115,6 +115,9 @@ public class StashSorter {
 //    }
     
     private Item processWeapon(Item i){
+        if (i.properties == null){
+            return i;
+        }
         //calc different dps
         float totalPhysDmg = 0;
         float totalEleDmg = 0;
@@ -201,6 +204,9 @@ public class StashSorter {
     }
     
     private Item processArmour(Item i){
+        if (i.properties == null){
+            return i;
+        }
         for (Properties a: i.properties){
             switch (a.name) {
                 case "Armour":

@@ -40,13 +40,13 @@ public class Parser{
         }
     }
     
-    private GGGFileData stringToGGGJsonFile(String s){
+    public GGGFileData stringToGGGJsonFile(String s){
         Gson gson = new GsonBuilder().setLenient().create();
         
         return gson.fromJson(s, GGGFileData.class);
     }
     
-    private String inputstreamToString(InputStream inputStream) throws UnsupportedEncodingException, IOException {
+    public String inputstreamToString(InputStream inputStream) throws UnsupportedEncodingException, IOException {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int length;

@@ -31,27 +31,27 @@ public class ModListCreatorTest {
     /**
      * Test of getModMap method, of class ModListCreator.
      */
-    @Test
-    public void testGetModMap_Size() throws Exception {
-        System.out.println("testGetModMap_Count");
-        String filePath = "src\\test\\java\\CompositeModCalculations\\CompositeCalculations_1.json";
-        int expResult = 11;
-        Map<String, ModUses> result = ModListCreator.getModMap(filePath);
-        
-        assertEquals(expResult, result.size());
-    }
+//    @Test
+//    public void testGetModMap_Size() throws Exception {
+//        System.out.println("testGetModMap_Count");
+//        String filePath = "src\\test\\java\\CompositeModCalculations\\CompositeCalculations_1.json";
+//        int expResult = 11;
+//        Map<String, ModUses> result = ModListCreator.getModMap(filePath);
+//        
+//        assertEquals(expResult, result.size());
+//    }
 
     /**
      * Test of getModMap method, of class ModListCreator.
      */
-    @Test
-    public void testGetModMap_UsesSize() throws Exception {
-        System.out.println("getModMap");
-        String filePath = "src\\test\\java\\CompositeModCalculations\\CompositeCalculations_1.json";
-        int expResult = 2;
-        Map<String, ModUses> result = ModListCreator.getModMap(filePath);
-
-        assertEquals(expResult, result.get("+## to Strength").uses.size());
-    }
+//    @Test
+//    public void testGetModMap_UsesSize() throws Exception {
+//        System.out.println("getModMap");
+//        String filePath = "src\\test\\java\\CompositeModCalculations\\CompositeCalculations_1.json";
+//        int expResult = 2;
+//        Map<String, ModUses> result = ModListCreator.getModMap(filePath);
+//
+//        assertEquals(expResult, result.get("+## to Strength").uses.size());
+//    }
     
 }

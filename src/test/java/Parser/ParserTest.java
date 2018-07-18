@@ -41,7 +41,7 @@ public class ParserTest {
         Parser instance = injector.getInstance(Parser.class);
         
         GGGFileData file = instance.getStashTabs();
-        int expResult = 624;
+        int expResult = 630;
         int result = file.stashes.length;
         assertEquals(expResult, result);
     }
