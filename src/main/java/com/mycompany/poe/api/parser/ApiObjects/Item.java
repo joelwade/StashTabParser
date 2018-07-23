@@ -5,6 +5,7 @@
  */
 package com.mycompany.poe.api.parser.ApiObjects;
 
+import ToJson.Foo;
 import java.util.ArrayList;
 
 /**
@@ -39,6 +40,7 @@ public class Item {
     public Properties[] additionalProperties;
     
     public Category category;
+    @Foo
     public Sockets[] sockets;
     
     public String artFilename;
@@ -72,9 +74,6 @@ public class Item {
     public String lastCharacterName;
     
     //Weapon stats
-    public int physDps;//Currently not calced with 20q for non-corrupted items.
-    public int eleDps;
-    public int dps;//Currently not calc with 20q for non-corrupted items.
     public float aps;
     public float critChance;
     public int weaponRange;
@@ -82,9 +81,7 @@ public class Item {
     public int energyShield;
     public int armour;
     public int evasion;
-    //gem stats.
-//    public int currentLvlPercent;
-//    public int currentLevel;
+    //Gem stats
     //Socket info
     public int socketCount;
     public int maxLinks;
@@ -101,8 +98,12 @@ public class Item {
     public String categorySpecific; //armour, weapon, jewel etc.
     public float adjustedPrice;
     //Tuples.
-    public ArrayList<Tuple> itemStats;
+    @Foo
     public Tuple enchantedMod;
+    @Foo
+    public ArrayList<Tuple> itemStats;
+    @Foo
     public ArrayList<Tuple> implAndExplMods;
-    public ArrayList<Tuple> calculatedTotalValues;//For flat damage on jewels, amulets, rings, max life etc.
+    @Foo
+    public ArrayList<Tuple> calculatedTotalValues;
 }

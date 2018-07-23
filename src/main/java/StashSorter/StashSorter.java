@@ -24,7 +24,6 @@ import java.util.Map;
 public class StashSorter {
     
     private Stash stashIn;
-    private Stash stashOut;
     
     Map<String, Mod[]> compCalcs;
     Map<String, ModUses> modList;
@@ -47,6 +46,14 @@ public class StashSorter {
         calculateNextLvlRequirements(i);
         calculateRequirements(i);
         //Calc alt art bool.
+        
+        if (i.name.contains("<<set:MS>>")){
+            i.name = i.name.substring(28);
+        }
+        
+        if (i.typeLine.contains("<<set:MS>>")){
+            i.typeLine = i.typeLine.substring(28);
+        }
 
         if (i.category.accessories != null){
             i = processItemMods(i);
@@ -96,16 +103,23 @@ public class StashSorter {
          *  public String[] utilityMods;
          * 
          */
-        ArrayList<Tuple> mods = new ArrayList<>();
+        //need to add the processed mods to i.implAndExplMods
+        
         ProcessItemMods modProcessor = new ProcessItemMods();
-        mods.addAll(modProcessor.processMods(i.enchantMods));
-        mods.addAll(modProcessor.processMods(i.implicitMods));
-        mods.addAll(modProcessor.processMods(i.explicitMods));
-        mods.addAll(modProcessor.processMods(i.craftedMods));
-        mods.addAll(modProcessor.processMods(i.utilityMods));
+        i.implAndExplMods = new ArrayList<>();
+        i.implAndExplMods.addAll(modProcessor.processMods(i.enchantMods));
+        i.implAndExplMods.addAll(modProcessor.processMods(i.implicitMods));
+        i.implAndExplMods.addAll(modProcessor.processMods(i.explicitMods));
+        i.implAndExplMods.addAll(modProcessor.processMods(i.craftedMods));
+        i.implAndExplMods.addAll(modProcessor.processMods(i.utilityMods));
         
         CompCalcAlgorithm compCalc = new CompCalcAlgorithm(compCalcs, modList);
-        i.calculatedTotalValues = compCalc.calcCompMods(mods);
+        if (i.calculatedTotalValues == null){
+            i.calculatedTotalValues = compCalc.calcCompMods(i.implAndExplMods);
+        } else {
+            i.calculatedTotalValues.addAll(compCalc.calcCompMods(i.implAndExplMods));
+        }
+        
         
         return i;
     }

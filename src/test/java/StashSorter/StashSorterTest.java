@@ -98,7 +98,7 @@ public class StashSorterTest {
         //pain bane has 4 min and 12 max dmg, and 1.5 aps, which = 12 dps. 
         float totalEleDamageFromParser = 0;
         for (Item i: items){
-            if (i.name.equals("<<set:MS>><<set:M>><<set:S>>Pain Bane") || i.name.equals("Pain Bane")){
+            if (i.name.equals("Pain Bane")){
                 for (Tuple p: i.calculatedTotalValues){
                     if (p.getKey().equals("Total Elemental Damage to Attacks")){
                         totalEleDamageFromParser = (Float)p.getValue();
@@ -117,7 +117,7 @@ public class StashSorterTest {
         //pain bane has 9 min and 25 max dmg, and 1.5 aps, which = 25.5 dps. 
         float totalDamageFromParser = 0;
         for (Item i: items){
-            if (i.name.equals("<<set:MS>><<set:M>><<set:S>>Pain Bane") || i.name.equals("Pain Bane")){
+            if (i.name.equals("Pain Bane") || i.name.equals("Pain Bane")){
                 for (Tuple p: i.calculatedTotalValues){
                     if (p.getKey().equals("Total Damage to Attacks")){
                         totalDamageFromParser = (Float)p.getValue();
@@ -136,7 +136,7 @@ public class StashSorterTest {
         //pain bane has 74 min and 176 max dmg, and 1.5 aps, which = 187.5 dps. 
         float totalDamageFromParser = 0;
         for (Item i: items){
-            if (i.typeLine.equals("<<set:MS>><<set:M>><<set:S>>Malicious Gemini Claw") || i.typeLine.equals("Malicious Gemini Claw")){
+            if (i.typeLine.equals("Malicious Gemini Claw")){
                 for (Tuple p: i.calculatedTotalValues){
                     if (p.getKey().equals("Total Damage to Attacks")){
                         totalDamageFromParser = (Float)p.getValue();
@@ -155,7 +155,7 @@ public class StashSorterTest {
         //pain bane has 51 min and 108 max dmg, and 1.5 aps, which = 119.25 dps. 
         float totalDamageFromParser = 0;
         for (Item i: items){
-            if (i.typeLine.equals("<<set:MS>><<set:M>><<set:S>>Malicious Gemini Claw") || i.typeLine.equals("Malicious Gemini Claw")){
+            if (i.typeLine.equals("Malicious Gemini Claw") || i.typeLine.equals("Malicious Gemini Claw")){
                 for (Tuple p: i.calculatedTotalValues){
                     if (p.getKey().equals("Total Chaos Damage to Attacks")){
                         totalDamageFromParser = (Float)p.getValue();
@@ -277,7 +277,7 @@ public class StashSorterTest {
         final int totalQuality = 17;
         int qualityFromParser = 0;
         for (Item i: items){
-            if (i.name.equals("<<set:MS>><<set:M>><<set:S>>Roth's Reach")){
+            if (i.name.equals("Roth's Reach")){
                 qualityFromParser = i.quality;
             }
         }
@@ -291,7 +291,7 @@ public class StashSorterTest {
         final int totalQuality = 0;
         int qualityFromParser = 15;
         for (Item i: items){
-            if (i.name.equals("<<set:MS>><<set:M>><<set:S>>Darkray Vectors")){
+            if (i.name.equals("Darkray Vectors")){
                 qualityFromParser = i.quality;
             }
         }
@@ -320,7 +320,7 @@ public class StashSorterTest {
         final int totalRes = 51;
         float resFromParser = 0;
         for (Item i: items){
-            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Doom Dash")){
+            if ( i.name.equals("Doom Dash")){
                 for (Tuple t : i.calculatedTotalValues){
                     if (t.getKey().equals("(Total) +##% to Resistances")){
                         resFromParser = (float) t.getValue();
@@ -340,7 +340,7 @@ public class StashSorterTest {
         final int totalRes = 28;
         float resFromParser = 0;
         for (Item i: items){
-            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Doom Dash")){
+            if ( i.name.equals("Doom Dash")){
                 for (Tuple t : i.calculatedTotalValues){
                     if (t.getKey().equals("(Total) +##% to Elemental Resistances")){
                         resFromParser = (float) t.getValue();
@@ -353,14 +353,14 @@ public class StashSorterTest {
         assertEquals(totalRes, resFromParser,0);
     }
     
-    //<<set:MS>><<set:M>><<set:S>>Doom Dash
+    //Doom Dash
     @Test
     public void testDoomDashSocketCount(){
         System.out.println("testDoomDashSocketCount");
         final int socketCount = 4;
         float socketCountFromParser = 0;
         for (Item i: items){
-            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Doom Dash")){
+            if ( i.name.equals("Doom Dash")){
                 socketCountFromParser = i.socketCount;
             }
         }
@@ -368,14 +368,14 @@ public class StashSorterTest {
         assertEquals(socketCount, socketCountFromParser,0);
     }
     
-    //<<set:MS>><<set:M>><<set:S>>Doom Dash
+    //Doom Dash
     @Test
     public void testDoomDashSocketColours(){
         System.out.println("testDoomDashSocketColours");
         int[] socketColoursFromParser = {0,0,0,0};
         int[] socketColours = {3,1,0,0};
         for (Item i: items){
-            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Doom Dash")){
+            if ( i.name.equals("Doom Dash")){
                 socketColoursFromParser[0] = i.redSocketCount;
                 socketColoursFromParser[1] = i.greenSocketCount;
                 socketColoursFromParser[2] = i.blueSocketCount;
@@ -386,14 +386,14 @@ public class StashSorterTest {
         assertArrayEquals(socketColours, socketColoursFromParser);
     }
     
-    //<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg
+    //Pandemonium Needle6tgg
     @Test
     public void testPandemoniumNeedleSocketColours(){
         System.out.println("testPandemoniumNeedleSocketColours");
         int[] socketColoursFromParser = {0,0,0,0};
         int[] socketColours = {1,2,0,0};
         for (Item i: items){
-            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg")){
+            if ( i.name.equals("Pandemonium Needle6tgg")){
                 socketColoursFromParser[0] = i.redSocketCount;
                 socketColoursFromParser[1] = i.greenSocketCount;
                 socketColoursFromParser[2] = i.blueSocketCount;
@@ -404,14 +404,14 @@ public class StashSorterTest {
         assertArrayEquals(socketColours, socketColoursFromParser);
     }
     
-    //<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg
+    //Pandemonium Needle6tgg
     @Test
     public void testPandemoniumNeedleSocketCount(){
         System.out.println("testPandemoniumNeedleSocketCount");
         int socketCountFromParser = 3;
         int socketCount = 0;
         for (Item i: items){
-            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg")){
+            if ( i.name.equals("Pandemonium Needle6tgg")){
                 socketCount = i.socketCount;
             }
         }
@@ -419,14 +419,14 @@ public class StashSorterTest {
         assertEquals(socketCount, socketCountFromParser);
     }
     
-    //<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg
+    //Pandemonium Needle6tgg
     @Test
     public void testPandemoniumNeedleMaxLinks(){
         System.out.println("testPandemoniumNeedleMaxLinks");
         int maxLinksFromParser = 2;
         int maxLinks = 0;
         for (Item i: items){
-            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Pandemonium Needle6tgg")){
+            if ( i.name.equals("Pandemonium Needle6tgg")){
                 maxLinks = i.maxLinks;
             }
         }
@@ -440,7 +440,7 @@ public class StashSorterTest {
         int maxLinksFromParser = 6;
         int maxLinks = 0;
         for (Item i: items){
-            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Tabula Rasa")){
+            if ( i.name.equals("Tabula Rasa")){
                 maxLinks = i.maxLinks;
             }
         }
@@ -454,7 +454,7 @@ public class StashSorterTest {
         int socketCountFromParser = 6;
         int socketCount = 0;
         for (Item i: items){
-            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Tabula Rasa")){
+            if ( i.name.equals("Tabula Rasa")){
                 socketCount = i.socketCount;
             }
         }
@@ -468,7 +468,7 @@ public class StashSorterTest {
         int[] socketColoursFromParser = {0,0,0,0};
         int[] socketColours = {0,0,0,6};
         for (Item i: items){
-            if ( i.name.equals("<<set:MS>><<set:M>><<set:S>>Tabula Rasa")){
+            if ( i.name.equals("Tabula Rasa")){
                 socketColoursFromParser[0] = i.redSocketCount;
                 socketColoursFromParser[1] = i.greenSocketCount;
                 socketColoursFromParser[2] = i.blueSocketCount;
